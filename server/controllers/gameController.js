@@ -1,3 +1,7 @@
+const uuid = require('uuid');
+const path = require('path');
+const APIError = require('../errors/APIError');
+
 class GameController {
     async create() {
 
