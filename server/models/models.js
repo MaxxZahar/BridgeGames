@@ -30,7 +30,8 @@ const Hand = sequelize.define('hand', {
     contract: { type: DataTypes.INTEGER, allowNull: false },
     declarer: { type: DataTypes.STRING },
     lead: { type: DataTypes.STRING },
-    tricks: { type: DataTypes.INTEGER }
+    tricks: { type: DataTypes.INTEGER },
+    number: { type: DataTypes.INTEGER, unique: true, allowNull: false }
 });
 
 const GamePlayer = sequelize.define('player_game', {
