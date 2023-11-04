@@ -1,3 +1,5 @@
+const APIError = require("../errors/APIError");
+
 class UserController {
     async registration() {
 
@@ -7,9 +9,12 @@ class UserController {
 
     }
 
-    async check(req, res) {
-        const query = req.query;
-        res.json(query);
+    async check(req, res, next) {
+        const { id } = req.query;
+        if (!id) {
+            return next(APIError.badRequest('No id'));
+        }
+        res.json(id);
     }
 }
 

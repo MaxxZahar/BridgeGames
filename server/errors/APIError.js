@@ -14,3 +14,5 @@ class APIError extends Error {
         return new APIError(403, message);
     }
 }
+
+module.exports = APIError;
