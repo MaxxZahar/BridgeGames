@@ -23,7 +23,7 @@ const Tournament = sequelize.define('tournament', {
 const Game = sequelize.define('game', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     pbn: { type: DataTypes.STRING },
-    date: { type: DataTypes.DATE, allowNull: false, defaultValue: Sequelize.NOW }
+    date: { type: DataTypes.DATEONLY, allowNull: false, defaultValue: Sequelize.NOW }
 });
 
 const Hand = sequelize.define('hand', {
@@ -35,9 +35,9 @@ const Hand = sequelize.define('hand', {
     number: { type: DataTypes.INTEGER, unique: true, allowNull: false }
 });
 
-const GamePlayer = sequelize.define('player_game', {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true }
-});
+// const GamePlayer = sequelize.define('player_game', {
+//     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true }
+// });
 
 
 User.hasMany(Tournament);
@@ -49,9 +49,18 @@ Game.belongsTo(Tournament);
 Game.hasMany(Hand);
 Hand.belongsTo(Game);
 
-Player.belongsToMany(Game, { through: GamePlayer });
-Game.belongsToMany(Player, { through: GamePlayer });
+// Player.belongsToMany(Game, { through: GamePlayer });
+// Game.belongsToMany(Player, { through: GamePlayer });
+
+Player.hasOne(Game, { as: 'east', allowNull: false });
+Player.hasOne(Game, { as: 'south', allowNull: false });
+Player.hasOne(Game, { as: 'west', allowNull: false });
+Game.belongsTo(Player, { as: 'north', allowNull: false });
+
+// module.exports = {
+//     User, Player, Tournament, Game, Hand, GamePlayer
+// };
 
 module.exports = {
-    User, Player, Tournament, Game, Hand, GamePlayer
+    User, Player, Tournament, Game, Hand
 };
