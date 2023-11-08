@@ -42,11 +42,8 @@ class UserController {
     }
 
     async check(req, res, next) {
-        const { id } = req.query;
-        if (!id) {
-            return next(APIError.badRequest('No id'));
-        }
-        res.json(id);
+        const token = generateJWT(req.user.id, req.user.email, req.user.name, req.user.role);
+        return res.json({ token });
     }
 }
 
