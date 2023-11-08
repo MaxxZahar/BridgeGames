@@ -17,6 +17,7 @@ const Player = sequelize.define('player', {
 
 const Tournament = sequelize.define('tournament', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    name: { type: DataTypes.STRING, allowNull: false }
 });
 
 const Game = sequelize.define('game', {
