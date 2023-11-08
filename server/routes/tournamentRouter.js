@@ -9,5 +9,4 @@ router.get('/:id', tournamentController.getOne);
 
 router.delete('/:id', tournamentController.delete);
 
-
 module.exports = router;
