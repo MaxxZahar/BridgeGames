@@ -28,7 +28,7 @@ const Game = sequelize.define('game', {
 
 const Hand = sequelize.define('hand', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    contract: { type: DataTypes.INTEGER, allowNull: false },
+    contract: { type: DataTypes.STRING, allowNull: false },
     declarer: { type: DataTypes.STRING },
     lead: { type: DataTypes.STRING },
     tricks: { type: DataTypes.INTEGER },
